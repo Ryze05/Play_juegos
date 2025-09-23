@@ -95,7 +95,7 @@ fun New_player() {
                 }
 
 
-                //Spacer(modifier = Modifier.size(20.dp))
+                Spacer(modifier = Modifier.size(10.dp))
 
                 OutlinedTextField(
                     value = surname,
@@ -131,7 +131,7 @@ fun New_player() {
                     )
                 }
 
-                //Spacer(modifier = Modifier.size(20.dp))
+                Spacer(modifier = Modifier.size(10.dp))
 
                 Row(modifier = Modifier.fillMaxWidth()) {
                     Image(
@@ -145,12 +145,14 @@ fun New_player() {
                     Button(
                         onClick = {},
                         modifier = Modifier.width(150.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFf9aa33))
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFf9aa33)),
+                        shape = RoundedCornerShape(0.dp)
                     ) {
                         Text(
                             text = stringResource(id = R.string.change),
                             modifier = Modifier,
-                            fontWeight = FontWeight.ExtraBold
+                            fontWeight = FontWeight.ExtraBold,
+                            color = Color.Black
                         )
                     }
                 }
