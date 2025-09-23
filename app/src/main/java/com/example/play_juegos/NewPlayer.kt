@@ -12,7 +12,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -50,7 +52,8 @@ fun New_player() {
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.primary)
-            .padding(horizontal = 16.dp, vertical = 18.dp),
+            .padding(horizontal = 16.dp, vertical = 18.dp)
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
         //verticalArrangement = Arrangement.Center
     ) {
