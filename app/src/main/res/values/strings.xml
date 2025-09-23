@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Play Juegos</string>
+    <string name="play">Play</string>
+    <string name="new_player">New Play</string>
+    <string name="preferences">Preferences</string>
+    <string name="about">About</string>
+    <string name="change">Change</string>
+    <string name="add_new">Add new player</string>
+</resources>
