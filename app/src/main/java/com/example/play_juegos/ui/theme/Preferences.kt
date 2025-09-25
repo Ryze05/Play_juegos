@@ -34,12 +34,16 @@ fun Preferences() {
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFb9f4c9))
+            .padding(vertical = 10.dp)
     ) {
         Column(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("Elige una opción")
+            Text(
+                text = "Elige una opción:",
+
+            )
         }
 
         FloatingActionButton(
