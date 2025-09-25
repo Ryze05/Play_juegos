@@ -36,6 +36,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.play_juegos.ui.theme.Play_juegosTheme
+import com.example.play_juegos.ui.theme.Preferences
 
 val courgetteFontFamily = FontFamily(
     Font(R.font.courgette_regular, FontWeight.Normal)
@@ -56,6 +57,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         composable("Portada") { Portada(navController = navController) }
                         composable("New player") { New_player() }
+                        composable ("Preferences") { Preferences() }
                     }
                 }
             }
@@ -174,7 +176,7 @@ fun Orientacion_Retrato(modifier: Modifier = Modifier, navController: NavControl
 
             Spacer(modifier = Modifier.size(10.dp))
 
-            Button(onClick = {}, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4BA660))) {
+            Button(onClick = {navController.navigate("Preferences")}, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4BA660))) {
                 Text(
                     text = stringResource(id = R.string.preferences),
                     modifier = modifier,
