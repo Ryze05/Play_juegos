@@ -58,6 +58,7 @@ class MainActivity : ComponentActivity() {
                         composable("Portada") { Portada(navController = navController) }
                         composable("New player") { New_player() }
                         composable ("Preferences") { Preferences() }
+                        composable ("Play") { Games() }
                     }
                 }
             }
@@ -96,7 +97,7 @@ fun Orientacion_Panorama(modifier: Modifier = Modifier, navController: NavContro
 
         Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-                Button(onClick = { navController.navigate("Portada") },modifier.width(150.dp) ,colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)) {
+                Button(onClick = { navController.navigate("Play") },modifier.width(150.dp) ,colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)) {
                     Text(
                         text = stringResource(id = R.string.play),
                         modifier = modifier,
@@ -156,7 +157,7 @@ fun Orientacion_Retrato(modifier: Modifier = Modifier, navController: NavControl
         Spacer(modifier = Modifier.size(40.dp))
 
         Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.width(240.dp)) {
-            Button(onClick = {navController.navigate("Portada")}, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)) {
+            Button(onClick = {navController.navigate("Play")}, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)) {
                 Text(
                     text = stringResource(id = R.string.play),
                     modifier = modifier,
