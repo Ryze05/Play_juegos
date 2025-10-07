@@ -93,7 +93,9 @@ fun Preferences() {
         }
 
         FloatingActionButton(
-            onClick = { Toast.makeText(context, "Has seleccionado $stateOption con una puntuación de0 $selection", Toast.LENGTH_LONG).show() },
+            onClick = {
+                Toast.makeText(context, "Has seleccionado $stateOption con una puntuación de0 $selection", Toast.LENGTH_LONG).show()
+                      },
             shape = CircleShape,
             modifier = Modifier
                 .padding(16.dp)

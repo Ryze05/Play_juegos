@@ -15,8 +15,10 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.SearchBarDefaults.colors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -59,11 +62,29 @@ fun Games() {
         FloatingActionButton(
             onClick = {
                 val seleccionados = options.filter { it.selected }.map { it.title }
-                val mensaje = if (seleccionados.isNotEmpty()) {
+
+                var mensaje = ""
+
+                if (seleccionados.isNotEmpty()) {
+
+                    val seleccionadosComas = seleccionados.joinToString(",")
+                    val indiceUltimaComa = seleccionadosComas.lastIndexOf(',')
+
+                    if (indiceUltimaComa != -1) {
+                        mensaje = "Has seleccionado ${seleccionadosComas.replaceRange(indiceUltimaComa, indiceUltimaComa + 1, " y ")}"
+                    }
+
+                } else {
+                    mensaje = "No seleccionaste ningún juego"
+                }
+
+
+
+                /*val mensaje = if (seleccionados.isNotEmpty()) {
                     "Has seleccionado: ${seleccionados.joinToString(", ")}"
                 } else {
                     "No seleccionaste ningún juego"
-                }
+                }*/
                 Toast.makeText(context, mensaje, Toast.LENGTH_LONG).show()
             },
             shape = CircleShape,
@@ -76,6 +97,11 @@ fun Games() {
 
     }
 }
+
+
+//colors = RadioButtonDefaults.colors(
+//selectedColor = Color.Red
+//)
 
 @Composable
 fun getOptions(titles: List<String>): List<CheckInfo>  {
@@ -113,7 +139,11 @@ fun MyCheckBox(checkInfo: CheckInfo) {
         Checkbox(
             checked = checkInfo.selected,
             onCheckedChange = {
-                checkInfo.onCheckedChange(!checkInfo.selected) })
+                checkInfo.onCheckedChange(!checkInfo.selected) },
+            colors = CheckboxDefaults.colors(
+                checkedColor = Color(0xFF379665)
+                    )
+            )
         //Spacer(modifier = Modifier.width(8.dp))
         Text(text = checkInfo.title)
     }

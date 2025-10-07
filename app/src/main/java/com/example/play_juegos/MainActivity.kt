@@ -52,13 +52,14 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = "Portada",
+                        startDestination = "Slpash",
                         modifier = Modifier.padding(innerPadding)
                     ) {
                         composable("Portada") { Portada(navController = navController) }
                         composable("New player") { New_player() }
                         composable ("Preferences") { Preferences() }
                         composable ("Play") { Games() }
+                        composable  ("Slpash" ) { Splash(navController) }
                     }
                 }
             }
