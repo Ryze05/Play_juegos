@@ -2,7 +2,9 @@ package com.example.play_juegos
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,6 +19,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -48,20 +52,20 @@ fun New_player() {
     var nameError by remember { mutableStateOf(false) }
     var nicknameError by remember { mutableStateOf(false) }
 
+    var expanded by remember { mutableStateOf(false) }
+
+    val emails =
+        listOf("example1@gmail.com", "example2@gmail.com", "example3@gmail.com", "example4@gmail.com", "example5@gmail.com")
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.primary)
             .padding(horizontal = 16.dp, vertical = 18.dp)
             .verticalScroll(rememberScrollState()),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        //verticalArrangement = Arrangement.Center
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-            /*.background(Color.Gray)*/
-        ) {
+        Row(modifier = Modifier.fillMaxWidth()) {
 
             Image(
                 painter = painterResource(id = R.drawable.account),
@@ -86,17 +90,13 @@ fun New_player() {
                     label = { Text("Nombre") }
                 )
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
+                Row(modifier = Modifier.fillMaxWidth()) {
                     Text(
                         text = if (nameError) "Error: Es obligatorio" else "* Obligatorio",
-                        color = if (nameError) { MaterialTheme.colorScheme.error } else { Color(0xFF41624d) },
+                        color = if (nameError) MaterialTheme.colorScheme.error else Color(0xFF41624d),
                         textAlign = TextAlign.Right
                     )
                 }
-
 
                 Spacer(modifier = Modifier.size(10.dp))
 
@@ -124,13 +124,10 @@ fun New_player() {
                     label = { Text("Nickname") }
                 )
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    Text (
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    Text(
                         text = if (nicknameError) "Error: Es obligatorio" else "* Obligatorio",
-                        color = if (nicknameError) { MaterialTheme.colorScheme.error } else { Color(0xFF41624d) }
+                        color = if (nicknameError) MaterialTheme.colorScheme.error else Color(0xFF41624d)
                     )
                 }
 
@@ -153,15 +150,12 @@ fun New_player() {
                     ) {
                         Text(
                             text = stringResource(id = R.string.change),
-                            modifier = Modifier,
                             fontWeight = FontWeight.ExtraBold,
                             color = Color.Black
                         )
                     }
                 }
             }
-
-
         }
 
         Spacer(modifier = Modifier.size(20.dp))
@@ -189,26 +183,48 @@ fun New_player() {
 
         Spacer(modifier = Modifier.size(20.dp))
 
-        Row(modifier = Modifier.fillMaxWidth()) {
-            Image(
-                painter = painterResource(id = R.drawable.email),
-                contentDescription = "Email image",
-                modifier = Modifier.requiredSize(80.dp)
-            )
+        Box(modifier = Modifier.fillMaxWidth()) {
+            Row(modifier = Modifier.fillMaxWidth()) {
+                Image(
+                    painter = painterResource(id = R.drawable.email),
+                    contentDescription = "Email image",
+                    modifier = Modifier.requiredSize(80.dp)
+                )
 
-            Spacer(modifier = Modifier.size(20.dp))
+                Spacer(modifier = Modifier.size(20.dp))
 
-            OutlinedTextField(
-                value = email,
-                onValueChange = { email = it },
-                placeholder = { Text("Email") },
-                singleLine = true,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Color(0xFF8dd5a8)),
-                label = { Text("Email") }
-            )
+                OutlinedTextField(
+                    value = email,
+                    onValueChange = { },
+                    placeholder = { Text("Email") },
+                    singleLine = true,
+                    readOnly = true,
+                    enabled = false,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color(0xFF8dd5a8))
+                        .clickable { expanded = true },
+                    label = { Text("Email") }
+                )
+            }
+
+            DropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                emails.forEach { email2 ->
+                    DropdownMenuItem(
+                        onClick = {
+                            email = email2
+                            expanded = false
+                        },
+                        text = { Text(email2) }
+                    )
+                }
+            }
         }
+
 
         Spacer(modifier = Modifier.size(20.dp))
 
@@ -224,12 +240,12 @@ fun New_player() {
         ) {
             Text(
                 text = stringResource(id = R.string.add_new),
-                modifier = Modifier,
                 fontWeight = FontWeight.ExtraBold
             )
         }
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable
