@@ -1,5 +1,7 @@
 package com.example.play_juegos.ui.theme
 
+import android.R
+import android.R.attr.color
 import android.preference.Preference
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -27,6 +29,7 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
+import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -83,6 +86,8 @@ fun Preferences() {
                 )
                 RatingBar(rating = starsSelected, stars = 10, onItemSelected = { newValue -> starsSelected = newValue })
 
+                Text("Plataformas:")
+
                 MyFilterChip(selectedChip) {selectedChip = it}
             }
 
@@ -92,17 +97,46 @@ fun Preferences() {
 
         }
 
-        FloatingActionButton(
-            onClick = {
-                Toast.makeText(context, "Has seleccionado $stateOption con una puntuación de0 $selection", Toast.LENGTH_LONG).show()
-                      },
-            shape = CircleShape,
+        Box(
             modifier = Modifier
-                .padding(16.dp)
-                .align(alignment = Alignment.BottomEnd)
+                .fillMaxSize()
+                .padding(16.dp),
+            contentAlignment = Alignment.BottomEnd // coloca ambos botones en la esquina inferior derecha
         ) {
-            Icon(Icons.Default.Add, contentDescription = "Añadir")
+            Column(
+                verticalArrangement = Arrangement.spacedBy(12.dp), // espacio entre los botones
+                horizontalAlignment = Alignment.End
+            ) {
+                SmallFloatingActionButton(
+                    onClick = {
+                        Toast.makeText(
+                            context,
+                            "Has seleccionado $stateOption con estas estrellas $starsSelected",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    },
+                    shape = CircleShape,
+                    containerColor = Color(0xFFabeabe)
+                ) {
+                    Icon(Icons.Default.Star, contentDescription = "Añadir")
+                }
+
+                FloatingActionButton(
+                    onClick = {
+                        Toast.makeText(
+                            context,
+                            "Has seleccionado $stateOption con una puntuación de $selection",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    },
+                    shape = CircleShape,
+                    containerColor = Color(0xFFF9AA33)
+                ) {
+                    Icon(Icons.Default.Done, contentDescription = "Añadir", tint = Color.White)
+                }
+            }
         }
+
     }
 }
 
