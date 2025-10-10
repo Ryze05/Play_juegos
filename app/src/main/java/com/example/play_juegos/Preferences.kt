@@ -1,4 +1,4 @@
-package com.example.play_juegos.ui.theme
+package com.example.play_juegos
 
 import android.R
 import android.R.attr.color
@@ -221,7 +221,7 @@ fun RatingBar(
 @Preview(showBackground = true)
 @Composable
 fun PreferencesPreview() {
-    Play_juegosTheme {
+    _root_ide_package_.com.example.play_juegos.ui.theme.Play_juegosTheme {
         Preferences()
     }
 }

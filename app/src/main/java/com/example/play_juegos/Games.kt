@@ -35,7 +35,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.play_juegos.ui.theme.Play_juegosTheme
-import com.example.play_juegos.ui.theme.Preferences
+import com.example.play_juegos.Preferences
 
 data class CheckInfo(var title:String, var selected:Boolean, var onCheckedChange:(Boolean)->Unit)
 

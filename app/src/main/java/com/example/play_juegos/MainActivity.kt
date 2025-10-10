@@ -36,7 +36,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.play_juegos.ui.theme.Play_juegosTheme
-import com.example.play_juegos.ui.theme.Preferences
+import com.example.play_juegos.Preferences
 
 val courgetteFontFamily = FontFamily(
     Font(R.font.courgette_regular, FontWeight.Normal)
@@ -60,6 +60,7 @@ class MainActivity : ComponentActivity() {
                         composable ("Preferences") { Preferences() }
                         composable ("Play") { Games() }
                         composable  ("Slpash" ) { Splash(navController) }
+                        composable  ("About" ) { About() }
                     }
                 }
             }
@@ -121,7 +122,7 @@ fun Orientacion_Panorama(modifier: Modifier = Modifier, navController: NavContro
             Spacer(modifier = Modifier.size(10.dp))
 
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-                Button(onClick = {}, modifier.width(150.dp),colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4BA660))) {
+                Button(onClick = {navController.navigate("Preferences")}, modifier.width(150.dp),colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4BA660))) {
                     Text(
                         text = stringResource(id = R.string.preferences),
                         modifier = modifier,
@@ -131,7 +132,7 @@ fun Orientacion_Panorama(modifier: Modifier = Modifier, navController: NavContro
 
                 //Spacer(modifier = Modifier.size(10.dp))
 
-                Button(onClick = {}, modifier.width(150.dp),colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4BA660))) {
+                Button(onClick = {navController.navigate("About")}, modifier.width(150.dp),colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4BA660))) {
                     Text(
                         text = stringResource(id = R.string.about),
                         modifier = modifier,
@@ -188,7 +189,7 @@ fun Orientacion_Retrato(modifier: Modifier = Modifier, navController: NavControl
 
             Spacer(modifier = Modifier.size(10.dp))
 
-            Button(onClick = {}, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4BA660))) {
+            Button(onClick = {navController.navigate("About")}, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4BA660))) {
                 Text(
                     text = stringResource(id = R.string.about),
                     modifier = modifier,
